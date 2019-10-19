@@ -1,0 +1,15 @@
+[comment encoding = UTF-8 /]
+[module consumermodule('http://www.example.org/mo631model')]
+
+[import configurations /]
+[import resources /]
+
+[template public ConsumerTemplate(consumerRoot : ConsumerRoot)]
+[comment @main/]
+
+[RabbitConfiguration()/]
+[DestinationsConfig()/]
+[ConsumerApplication()/]
+[ApplicationProperties(consumerRoot)/]
+
+[/template]

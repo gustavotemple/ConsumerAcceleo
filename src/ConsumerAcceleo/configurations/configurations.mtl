@@ -1,0 +1,146 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module configurations.
+ */]
+[module configurations('http://www.example.org/mo631model')]
+
+[**
+ * The documentation of the template RabbitConfiguration.
+ * @param anOclAny OclAny
+ */]
+[template public RabbitConfiguration(anOclAny : OclAny)]
+
+[file ('src/main/java/rabbitmq/consumer/RabbitConfiguration.java', false, 'UTF-8')]
+
+package rabbitmq.consumer;
+
+import org.springframework.amqp.core.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.PostConstruct;
+
+@Configuration
+public class RabbitConfiguration {
+
+    private final AmqpAdmin amqpAdmin;
+    private final DestinationsConfig destinationsConfig;
+
+    @Autowired
+    public RabbitConfiguration(AmqpAdmin amqpAdmin, DestinationsConfig destinationsConfig) {
+        this.amqpAdmin = amqpAdmin;
+        this.destinationsConfig = destinationsConfig;
+    }
+
+    @PostConstruct
+    public void setupQueueDestinations() {
+        destinationsConfig.getQueues()
+                .forEach((key, destination) -> {
+                    Exchange ex = ExchangeBuilder.directExchange(
+                            destination.getExchange())
+                            .durable(true)
+                            .build();
+                    amqpAdmin.declareExchange(ex);
+                    Queue q = QueueBuilder.durable(
+                            destination.getRoutingKey())
+                            .build();
+                    amqpAdmin.declareQueue(q);
+                    Binding b = BindingBuilder.bind(q)
+                            .to(ex)
+                            .with(destination.getRoutingKey())
+                            .noargs();
+                    amqpAdmin.declareBinding(b);
+                });
+    }
+}
+
+[/file]
+
+[/template]
+
+[**
+ * The documentation of the template DestinationsConfig.
+ * @param anOclAny OclAny
+ */]
+[template public DestinationsConfig(anOclAny : OclAny)]
+
+[file ('src/main/java/rabbitmq/consumer/DestinationsConfig.java', false, 'UTF-8')]
+
+package rabbitmq.consumer;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties("destinations")
+public class DestinationsConfig {
+
+    private Map<String, DestinationInfo> queues = new HashMap<>();
+
+    public Map<String, DestinationInfo> getQueues() {
+        return queues;
+    }
+
+    public void setQueues(Map<String, DestinationInfo> queues) {
+        this.queues = queues;
+    }
+
+    // DestinationInfo stores the Exchange name and routing key used
+    // by our producers when posting messages
+    static class DestinationInfo {
+
+        private String exchange;
+        private String routingKey;
+
+        public String getExchange() {
+            return exchange;
+        }
+
+        public void setExchange(String exchange) {
+            this.exchange = exchange;
+        }
+
+        public String getRoutingKey() {
+            return routingKey;
+        }
+
+        public void setRoutingKey(String routingKey) {
+            this.routingKey = routingKey;
+        }
+
+    }
+
+}
+
+[/file]
+
+[/template]
+
+[**
+ * The documentation of the template ConsumerApplication.
+ * @param anOclAny OclAny
+ */]
+[template public ConsumerApplication(anOclAny : OclAny)]
+
+[file ('src/main/java/rabbitmq/consumer/ConsumerApplication.java', false, 'UTF-8')]
+
+package rabbitmq.consumer;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+@SpringBootApplication
+@EnableConfigurationProperties(DestinationsConfig.class)
+public class ConsumerApplication {
+
+	public static void main(String [ '[' /] [ ']' /] args) {
+		SpringApplication.run(ConsumerApplication.class, args);
+	}
+
+}
+
+[/file]
+
+[/template]
