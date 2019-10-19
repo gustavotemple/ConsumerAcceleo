@@ -17,6 +17,14 @@
 ['spring.rabbitmq.password=' + consumerRoot.password /]
 ['spring.rabbitmq.username=' + consumerRoot.username /]
 
+[for (consumer : Consumer | consumerRoot.consumer)]
+  [for (queue : Queue | consumer.queue)]
+    [for (binding : Binding | queue.binding)]
+
+['destinations.queues.' + queue.name + '.exchange='    + binding.routingKey /]
+['destinations.queues.' + queue.name + '.routing-key=' + binding.exchange.name /]
+[/for][/for][/for]
+
 [/file]
 
 [/template]
