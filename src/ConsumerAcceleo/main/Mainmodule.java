@@ -25,24 +25,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'Consumermodule' generation module.
+ * Entry point of the 'Mainmodule' generation module.
  *
  * @generated
  */
-public class Consumermodule extends AbstractAcceleoGenerator {
+public class Mainmodule extends AbstractAcceleoGenerator {
     /**
      * The name of the module.
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/ConsumerAcceleo/main/consumermodule";
+    public static final String MODULE_FILE_NAME = "/ConsumerAcceleo/main/mainmodule";
     
     /**
      * The name of the templates that are to be generated.
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "ConsumerTemplate" };
+    public static final String[] TEMPLATE_NAMES = { "Main" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).
@@ -65,7 +65,7 @@ public class Consumermodule extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public Consumermodule() {
+    public Mainmodule() {
         // Empty implementation
     }
 
@@ -85,7 +85,7 @@ public class Consumermodule extends AbstractAcceleoGenerator {
      *             the model cannot be loaded.
      * @generated
      */
-    public Consumermodule(URI modelURI, File targetFolder,
+    public Mainmodule(URI modelURI, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(modelURI, targetFolder, arguments);
     }
@@ -106,7 +106,7 @@ public class Consumermodule extends AbstractAcceleoGenerator {
      *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
      * @generated
      */
-    public Consumermodule(EObject model, File targetFolder,
+    public Mainmodule(EObject model, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(model, targetFolder, arguments);
     }
@@ -141,7 +141,7 @@ public class Consumermodule extends AbstractAcceleoGenerator {
                  * add in "arguments" this "String" attribute.
                  */
                 
-                Consumermodule generator = new Consumermodule(modelURI, folder, arguments);
+                Mainmodule generator = new Mainmodule(modelURI, folder, arguments);
                 
                 /*
                  * Add the properties from the launch arguments.

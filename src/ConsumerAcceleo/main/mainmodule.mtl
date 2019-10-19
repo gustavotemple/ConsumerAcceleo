@@ -1,15 +1,18 @@
 [comment encoding = UTF-8 /]
-[module consumermodule('http://www.example.org/mo631model')]
+[module mainmodule('http://www.example.org/mo631model')]
 
 [import ConsumerAcceleo::configurations::configurations /]
+[import ConsumerAcceleo::queues::queues /]
 [import ConsumerAcceleo::resources::resources /]
 
-[template public ConsumerTemplate(consumerRoot : ConsumerRoot)]
+[template public Main(consumerRoot : ConsumerRoot)]
 [comment @main/]
 
 [ConsumerApplication()/]
 [RabbitConfiguration()/]
 [DestinationsConfig()/]
+
+[ConsumerQueues()/]
 
 [ApplicationProperties(consumerRoot)/]
 
