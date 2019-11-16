@@ -13,7 +13,7 @@
 [for (consumer : Consumer | consumerRoot.consumer)]
   [for (queue : Queue | consumer.queue)]
 
-[file ('src/main/java/rabbitmq/consumer/listeners/Consumer' + consumer.name + 'Queue' + queue.name + '.java', false, 'UTF-8')]
+[file ('ConsumerApp/src/main/java/rabbitmq/consumer/listeners/Consumer' + consumer.name + 'Queue' + queue.name + '.java', false, 'UTF-8')]
 
 package rabbitmq.consumer.listeners;
 
@@ -28,7 +28,7 @@ public interface ['Consumer' + consumer.name + 'Queue' + queue.name /] {
 
 [/file]
 
-[file ('src/main/java/rabbitmq/consumer/listeners/Consumer' + consumer.name + 'Queue' + queue.name + 'Impl.java', false, 'UTF-8')]
+[file ('ConsumerApp/src/main/java/rabbitmq/consumer/listeners/Consumer' + consumer.name + 'Queue' + queue.name + 'Impl.java', false, 'UTF-8')]
 
 package rabbitmq.consumer.listeners;
 

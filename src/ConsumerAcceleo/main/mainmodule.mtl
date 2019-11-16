@@ -1,19 +1,28 @@
 [comment encoding = UTF-8 /]
+[**
+ * The documentation of the module mainmodule.
+ */]
 [module mainmodule('http://www.example.org/mo631model')]
 
 [import ConsumerAcceleo::configurations::configurations /]
 [import ConsumerAcceleo::listeners::listeners /]
 [import ConsumerAcceleo::resources::resources /]
+[import ConsumerAcceleo::dependencies::dependencies /]
 
+[**
+ * The documentation of the template Main.
+ * @param consumerRoot ConsumerRoot
+ */]
 [template public Main(consumerRoot : ConsumerRoot)]
 [comment @main/]
 
-[ConsumerApplication()/]
-[RabbitConfiguration()/]
-[DestinationsConfig()/]
+[ConsumerApplication() /]
+[RabbitConfiguration() /]
+[DestinationsConfig() /]
 
-[ConsumerListeners()/]
+[ConsumerListeners() /]
 
 [ApplicationProperties(consumerRoot)/]
+[Dependencies(consumerRoot) /]
 
 [/template]

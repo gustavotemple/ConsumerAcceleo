@@ -10,7 +10,7 @@
  */]
 [template public ApplicationProperties(consumerRoot : ConsumerRoot)]
 
-[file ('src/main/resources/application.properties', false, 'UTF-8')]
+[file ('ConsumerApp/src/main/resources/application.properties', false, 'UTF-8')]
 
 ['spring.application.name=' + consumerRoot.name /]
 ['spring.rabbitmq.host=' + consumerRoot.host /]
