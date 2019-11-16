@@ -38,8 +38,7 @@ import org.springframework.stereotype.Service;
 public class ['Consumer' + consumer.name + 'Queue' + queue.name + 'Impl' /] implements ['Consumer' + consumer.name + 'Queue' + queue.name /] {
     @Override
     public void listen(String message) {
-        System.out.print("['['/][consumer.name.toUpper() /][']'/]");
-        System.out.println("[ queue.name /]: " + message);
+        System.out.println("['['/][consumer.name.toUpper() /][']'/] [queue.name /]: " + message);
     }
 }
 
