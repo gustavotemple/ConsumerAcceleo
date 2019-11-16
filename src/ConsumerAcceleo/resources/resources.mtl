@@ -12,6 +12,7 @@
 
 [file ('src/main/resources/application.properties', false, 'UTF-8')]
 
+['spring.application.name=' + consumerRoot.name /]
 ['spring.rabbitmq.host=' + consumerRoot.host /]
 ['spring.rabbitmq.port=' + consumerRoot.port /]
 ['spring.rabbitmq.password=' + consumerRoot.password /]
@@ -21,8 +22,8 @@
   [for (queue : Queue | consumer.queue)]
     [for (binding : Binding | queue.binding)]
 
-['destinations.queues.' + queue.name + '.exchange='    + binding.routingKey /]
-['destinations.queues.' + queue.name + '.routing-key=' + binding.exchange.name /]
+['destinations.queues.' + queue.name + '.exchange='    + binding.exchange.name  /]
+['destinations.queues.' + queue.name + '.routing-key=' + binding.routingKey /]
 [/for][/for][/for]
 
 [/file]

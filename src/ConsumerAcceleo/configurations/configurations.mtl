@@ -42,7 +42,7 @@ public class RabbitConfiguration {
                             .build();
                     amqpAdmin.declareExchange(ex);
                     Queue q = QueueBuilder.durable(
-                            destination.getRoutingKey())
+                            key)
                             .build();
                     amqpAdmin.declareQueue(q);
                     Binding b = BindingBuilder.bind(q)
@@ -87,7 +87,7 @@ public class DestinationsConfig {
     }
 
     // DestinationInfo stores the Exchange name and routing key used
-    // by our producers when posting messages
+    // by producers when posting messages
     static class DestinationInfo {
 
         private String exchange;

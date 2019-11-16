@@ -2,7 +2,7 @@
 [module mainmodule('http://www.example.org/mo631model')]
 
 [import ConsumerAcceleo::configurations::configurations /]
-[import ConsumerAcceleo::queues::queues /]
+[import ConsumerAcceleo::listeners::listeners /]
 [import ConsumerAcceleo::resources::resources /]
 
 [template public Main(consumerRoot : ConsumerRoot)]
@@ -12,7 +12,7 @@
 [RabbitConfiguration()/]
 [DestinationsConfig()/]
 
-[ConsumerQueues()/]
+[ConsumerListeners()/]
 
 [ApplicationProperties(consumerRoot)/]
 

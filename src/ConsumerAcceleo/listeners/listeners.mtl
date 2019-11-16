@@ -1,0 +1,50 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module queues.
+ */]
+[module listeners('http://www.example.org/mo631model')]
+
+[**
+ * The documentation of the template ConsumerListeners.
+ * @param consumerRoot : ConsumerRoot
+ */]
+[template public ConsumerListeners(consumerRoot : ConsumerRoot)]
+
+[for (consumer : Consumer | consumerRoot.consumer)]
+  [for (queue : Queue | consumer.queue)]
+
+[file ('src/main/java/rabbitmq/consumer/listeners/Consumer' + consumer.name + 'Queue' + queue.name + '.java', false, 'UTF-8')]
+
+package rabbitmq.consumer.listeners;
+
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+public interface ['Consumer' + consumer.name + 'Queue' + queue.name /] {
+
+    @RabbitListener(queues = "[queue.name /]")
+    public void listen(String message);
+
+}
+
+[/file]
+
+[file ('src/main/java/rabbitmq/consumer/listeners/Consumer' + consumer.name + 'Queue' + queue.name + 'Impl.java', false, 'UTF-8')]
+
+package rabbitmq.consumer.listeners;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ['Consumer' + consumer.name + 'Queue' + queue.name + 'Impl' /] implements ['Consumer' + consumer.name + 'Queue' + queue.name /] {
+    @Override
+    public void listen(String message) {
+        System.out.print("['['/][consumer.name.toUpper() /][']'/]");
+        System.out.println("[ queue.name /]: " + message);
+    }
+}
+
+[/file]
+
+[/for][/for]
+
+[/template]
