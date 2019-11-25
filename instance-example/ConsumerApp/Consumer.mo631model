@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mo631model:ConsumerRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mo631model="http://www.example.org/mo631model">
+  <consumer name="consumer1">
+    <queue name="queue1">
+      <binding routingKey="key1">
+        <exchange name="exchange1"/>
+      </binding>
+    </queue>
+    <queue name="aaa">
+      <binding routingKey="bbb">
+        <exchange name="ccc"/>
+      </binding>
+    </queue>
+  </consumer>
+  <consumer name="consumer2">
+    <queue name="ddd">
+      <binding routingKey="eee">
+        <exchange name="fff"/>
+      </binding>
+    </queue>
+  </consumer>
+</mo631model:ConsumerRoot>
